@@ -65,7 +65,8 @@ result:
       "name": "Terracoin",
       "symbol": "TRC",
       "website_slug": "terracoin"
-    }
+    },
+    (...)
   ],
   "metadata": {
     "timestamp": 1525352247,
