@@ -6,6 +6,4 @@ use CoinMarketCap\Market;
 
 $coinmarketcap = new Market();
 
-$result = $coinmarketcap->getListings();
-
-echo json_encode($result);
+echo json_encode($coinmarketcap->getTickerById(1, ['convert' => 'EUR']));
