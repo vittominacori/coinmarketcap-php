@@ -16,7 +16,7 @@ use Unirest;
  */
 class Market
 {
-    private static $apiPath = "https://api.coinmarketcap.com/v1/";
+    private static $apiPath = "https://api.coinmarketcap.com/v2/";
     private static $headers = [
         'Accept' => 'application/json',
         'Content-Type' => 'application/json'
@@ -36,6 +36,15 @@ class Market
 
 
     /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getListings()
+    {
+        return $this->get('listings');
+    }
+
+    /**
      * @param array $params (Optional parameters "convert", "limit", "start")
      * @return mixed
      * @throws \Exception
@@ -46,7 +55,7 @@ class Market
     }
 
     /**
-     * @param string $id (like "bitcoin", "ethereum")
+     * @param integer $id
      * @param array $params (Optional parameters "convert")
      * @return mixed
      * @throws \Exception

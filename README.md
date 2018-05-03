@@ -27,13 +27,64 @@ $coinmarketcap = new Market();
 
 ### Call APIs
 
+
+#### Listings
+
+Description:
++ This method displays all active cryptocurrency listings in one call. Use the "id" field on the Ticker endpoint to query more information on a specific cryptocurrency.
+
+```php
+$coinmarketcap->getListings();
+```
+
+result: 
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Bitcoin",
+      "symbol": "BTC",
+      "website_slug": "bitcoin"
+    },
+    {
+      "id": 2,
+      "name": "Litecoin",
+      "symbol": "LTC",
+      "website_slug": "litecoin"
+    },
+    {
+      "id": 3,
+      "name": "Namecoin",
+      "symbol": "NMC",
+      "website_slug": "namecoin"
+    },
+    {
+      "id": 4,
+      "name": "Terracoin",
+      "symbol": "TRC",
+      "website_slug": "terracoin"
+    }
+  ],
+  "metadata": {
+    "timestamp": 1525352247,
+    "num_cryptocurrencies": 1604,
+    "error": null
+  }
+}
+```
+
+
 #### Ticker
 
+Description:
++ This method displays cryptocurrency ticker data in order of rank. The maximum number of results per call is 100. Pagination is possible by using the start and limit parameters.
+
 Optional parameters:
-+ (int) start - return results from rank [start] and above
-+ (int) limit - return a maximum of [limit] results (default is 100, use 0 to return all results)
-+ (string) convert - return price, 24h volume, and market cap in terms of another currency. Valid values are: 
-"AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
++ (int) start - return results from rank [start] and above (default is 1)
++ (int) limit - return a maximum of [limit] results (default is 100; max is 100)
++ (string) convert - return pricing info in terms of another currency. Valid fiat currency values are: "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR". Valid cryptocurrency values are: "BTC", "ETH" "XRP", "LTC", and "BCH"
 
 ```php
 $coinmarketcap->getTicker(['convert' => 'EUR', 'start' => 10, 'limit' => 10]);
@@ -42,95 +93,178 @@ $coinmarketcap->getTicker(['convert' => 'EUR', 'start' => 10, 'limit' => 10]);
 result: 
 
 ```json
-[
-  {
-    "id": "iota",
-    "name": "IOTA",
-    "symbol": "MIOTA",
-    "rank": "11",
-    "price_usd": "2.19728",
-    "price_btc": "0.00022294",
-    "24h_volume_usd": "43617700.0",
-    "market_cap_usd": "6107406300.0",
-    "available_supply": "2779530283.0",
-    "total_supply": "2779530283.0",
-    "max_supply": "2779530283.0",
-    "percent_change_1h": "-3.5",
-    "percent_change_24h": "-4.57",
-    "percent_change_7d": "-11.5",
-    "last_updated": "1517474355",
-    "price_eur": "1.7689070803",
-    "24h_volume_eur": "35114167.6788",
-    "market_cap_eur": "4916730798.0"
+{
+  "data": {
+    "131": {
+      "id": 131,
+      "name": "Dash",
+      "symbol": "DASH",
+      "website_slug": "dash",
+      "rank": 13,
+      "circulating_supply": 8044183.0,
+      "total_supply": 8044183.0,
+      "max_supply": 18900000.0,
+      "quotes": {
+        "USD": {
+          "price": 487.954,
+          "volume_24h": 109381000.0,
+          "market_cap": 3925191193.0,
+          "percent_change_1h": 1.17,
+          "percent_change_24h": 3.58,
+          "percent_change_7d": 3.28
+        },
+        "EUR": {
+          "price": 407.240552952,
+          "volume_24h": 91288070.028,
+          "market_cap": 3275917468.0,
+          "percent_change_1h": 1.17,
+          "percent_change_24h": 3.58,
+          "percent_change_7d": 3.28
+        }
+      },
+      "last_updated": 1525351442
+    },
+    "328": {
+      "id": 328,
+      "name": "Monero",
+      "symbol": "XMR",
+      "website_slug": "monero",
+      "rank": 12,
+      "circulating_supply": 15993246.0,
+      "total_supply": 15993246.0,
+      "max_supply": null,
+      "quotes": {
+        "USD": {
+          "price": 246.453,
+          "volume_24h": 83299300.0,
+          "market_cap": 3941583393.0,
+          "percent_change_1h": 1.23,
+          "percent_change_24h": 1.17,
+          "percent_change_7d": -5.47
+        },
+        "EUR": {
+          "price": 205.686716364,
+          "volume_24h": 69520596.1884,
+          "market_cap": 3289598201.0,
+          "percent_change_1h": 1.23,
+          "percent_change_24h": 1.17,
+          "percent_change_7d": -5.47
+        }
+      },
+      "last_updated": 1525351452
+    },
+    (...)
+    "1958": {
+      "id": 1958,
+      "name": "TRON",
+      "symbol": "TRX",
+      "website_slug": "tron",
+      "rank": 10,
+      "circulating_supply": 65748111645.0,
+      "total_supply": 100000000000.0,
+      "max_supply": null,
+      "quotes": {
+        "USD": {
+          "price": 0.0879502,
+          "volume_24h": 614788000.0,
+          "market_cap": 5782559569.0,
+          "percent_change_1h": 0.69,
+          "percent_change_24h": -3.11,
+          "percent_change_7d": 26.69
+        },
+        "EUR": {
+          "price": 0.0734021815,
+          "volume_24h": 513094687.344,
+          "market_cap": 4826054825.0,
+          "percent_change_1h": 0.69,
+          "percent_change_24h": -3.11,
+          "percent_change_7d": 26.69
+        }
+      },
+      "last_updated": 1525351455
+    }
   },
-  {
-    "id": "dash",
-    "name": "Dash",
-    "symbol": "DASH",
-    "rank": "12",
-    "price_usd": "676.524",
-    "price_btc": "0.0686426",
-    "24h_volume_usd": "93164800.0",
-    "market_cap_usd": "5312450962.0",
-    "available_supply": "7852568.0",
-    "total_supply": "7852568.0",
-    "max_supply": "18900000.0",
-    "percent_change_1h": "-2.73",
-    "percent_change_24h": "-1.54",
-    "percent_change_7d": "-15.5",
-    "last_updated": "1517474342",
-    "price_eur": "544.631587056",
-    "24h_volume_eur": "75001763.2512",
-    "market_cap_eur": "4276756772.0"
-  },
-  ...
-]
+  "metadata": {
+    "timestamp": 1525351470,
+    "num_cryptocurrencies": 1604,
+    "error": null
+  }
+}
 ```
 
 
 #### Ticker (Specific Currency)
 
+Description:
++ This method displays ticker data for a specific cryptocurrency. Use the "id" field from the getListings method as param.
+
 Optional parameters:
-+ (string) convert - return price, 24h volume, and market cap in terms of another currency. Valid values are: 
-"AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
++ (string) convert - return pricing info in terms of another currency. Valid fiat currency values are: "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR". Valid cryptocurrency values are: "BTC", "ETH" "XRP", "LTC", and "BCH"
 
 ```php
-$coinmarketcap->getTickerById('bitcoin', ['convert' => 'EUR']);
+$coinmarketcap->getTickerById(1, ['convert' => 'EUR']);
 ```
 
 result: 
 
 ```json
-[
-  {
-    "id": "bitcoin",
+{
+  "data": {
+    "id": 1,
     "name": "Bitcoin",
     "symbol": "BTC",
-    "rank": "1",
-    "price_usd": "9997.51",
-    "price_btc": "1.0",
-    "24h_volume_usd": "7058590000.0",
-    "market_cap_usd": "168341442541",
-    "available_supply": "16838337.0",
-    "total_supply": "16838337.0",
-    "max_supply": "21000000.0",
-    "percent_change_1h": "-1.74",
-    "percent_change_24h": "-2.16",
-    "percent_change_7d": "-12.85",
-    "last_updated": "1517474067",
-    "price_eur": "8048.43544044",
-    "24h_volume_eur": "5682475527.96",
-    "market_cap_eur": "135522268269"
+    "website_slug": "bitcoin",
+    "rank": 1,
+    "circulating_supply": 17012850.0,
+    "total_supply": 17012850.0,
+    "max_supply": 21000000.0,
+    "quotes": {
+      "USD": {
+        "price": 9265.88,
+        "volume_24h": 8084730000.0,
+        "market_cap": 157639026558.0,
+        "percent_change_1h": 0.67,
+        "percent_change_24h": 1.33,
+        "percent_change_7d": 4.7
+      },
+      "EUR": {
+        "price": 7733.19225744,
+        "volume_24h": 6747418641.24,
+        "market_cap": 131563639897.0,
+        "percent_change_1h": 0.67,
+        "percent_change_24h": 1.33,
+        "percent_change_7d": 4.7
+      }
+    },
+    "last_updated": 1525351771
+  },
+  "metadata": {
+    "timestamp": 1525351800,
+    "error": null
   }
-]
+}
+```
+
+sample error response:
+
+```json
+{
+    "data": null, 
+    "metadata": {
+        "timestamp": 1525137187, 
+        "error": "id not found"
+    }
+}
 ```
 
 
 #### Global Data
 
+Description: 
++ This methid displays the global data found at the top of coinmarketcap.com.
+
 Optional parameters:
-+ (string) convert - return 24h volume, and market cap in terms of another currency. Valid values are: 
-"AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
++ (string) convert - return pricing info in terms of another currency. Valid fiat currency values are: "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR". Valid cryptocurrency values are: "BTC", "ETH" "XRP", "LTC", and "BCH"
 
 ```php
 $coinmarketcap->getGlobalData(['convert' => 'EUR']);
@@ -140,14 +274,25 @@ result:
 
 ```json
 {
-  "total_market_cap_usd": 498374989850,
-  "total_24h_volume_usd": 20784204906,
-  "bitcoin_percentage_of_market_cap": 33.49000000000000198951966012828052043914794921875,
-  "active_currencies": 895,
-  "active_assets": 580,
-  "active_markets": 8419,
-  "last_updated": 1517474662,
-  "total_market_cap_eur": 401213795329,
-  "total_24h_volume_eur": 16732199454
+  "data": {
+    "active_cryptocurrencies": 1604,
+    "active_markets": 10627,
+    "bitcoin_percentage_of_market_cap": 35.68,
+    "quotes": {
+      "USD": {
+        "total_market_cap": 442240921543.0,
+        "total_volume_24h": 26428639806.0
+      },
+      "EUR": {
+        "total_market_cap": 369088966229.0,
+        "total_volume_24h": 22057025638.0
+      }
+    },
+    "last_updated": 1525352071
+  },
+  "metadata": {
+    "timestamp": 1525352031,
+    "error": null
+  }
 }
 ```
