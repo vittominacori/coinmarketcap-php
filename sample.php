@@ -2,12 +2,11 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use CoinMarketCap\Market;
-
-$coinmarketcap = new Market('yourApiKey');
+/** @var \CoinMarketCap\Api $cmc */
+$cmc = new CoinMarketCap\Api('yourApiKey');
 
 try {
-    echo json_encode($coinmarketcap->quotesLatest(['id' => 1, 'convert' => 'EUR']));
+    echo json_encode($cmc->cryptocurrency()->info(['id' => 1]));
 } catch (\Exception $e) {
     echo "Error {$e->getCode()}: {$e->getMessage()}";
 }
