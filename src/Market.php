@@ -16,63 +16,57 @@ use Unirest;
  */
 class Market
 {
-    private static $apiPath = "https://api.coinmarketcap.com/v2/";
+    private static $apiPath = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/";
     private static $headers = [
         'Accept' => 'application/json',
         'Content-Type' => 'application/json'
     ];
 
-    public function __construct($apiPath = '', $headers = [])
+    public function __construct($apiKey = '')
     {
-        if (!empty($apiPath)) {
-            self::$apiPath = $apiPath;
-        }
-        if (!empty($headers)) {
-            self::$headers = $headers;
-        }
+        self::$headers['X-CMC_PRO_API_KEY'] = $apiKey;
     }
 
     // public methods
 
-
     /**
+     * @param array $params (Optional parameters "id", "symbol")
      * @return mixed
      * @throws \Exception
      */
-    public function getListings()
+    public function info($params = [])
     {
-        return $this->get('listings');
+        return $this->get('info', $params);
     }
 
     /**
-     * @param array $params (Optional parameters "convert", "limit", "start")
+     * @param array $params (Optional parameters "listing_status", "limit", "start", "symbol")
      * @return mixed
      * @throws \Exception
      */
-    public function getTicker($params = [])
+    public function map($params = [])
     {
-        return $this->get('ticker', $params);
+        return $this->get('map', $params);
     }
 
     /**
-     * @param integer $id
-     * @param array $params (Optional parameters "convert")
+     * @param array $params (Optional parameters "limit", "start", "convert", "sort", "sort_dir", "cryptocurrency_type")
      * @return mixed
      * @throws \Exception
      */
-    public function getTickerById($id, $params = [])
+    public function listingsLatest($params)
     {
-        return $this->get('ticker/' . $id, $params);
+        return $this->get('listings/latest', $params);
     }
 
     /**
-     * @param array $params (Optional parameters "convert")
+     * @param array $params (Optional parameters "id", "symbol", "convert")
      * @return mixed
      * @throws \Exception
      */
-    public function getGlobalData($params = [])
+    public function quotesLatest($params = [])
     {
-        return $this->get('global', $params);
+        return $this->get('quotes/latest', $params);
     }
 
     // private methods
@@ -85,7 +79,7 @@ class Market
         if ($response->code == 200) {
             return $response->body;
         } else {
-            throw new \Exception("Error: code {$response->code} during call to $endpoint with parameters " . json_encode($parameters));
+            throw new \Exception($response->body->status->error_message, $response->body->status->error_code);
         }
     }
 }
