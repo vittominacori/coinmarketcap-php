@@ -32,7 +32,8 @@ class Api
      */
     public static function cryptocurrency(): Cryptocurrency
     {
-        return self::$cryptocurrency ?: new Cryptocurrency(self::$apiKey);
+        self::$cryptocurrency = self::$cryptocurrency ?: new Cryptocurrency(self::$apiKey);
+        return self::$cryptocurrency;
     }
 
     /**
@@ -40,6 +41,7 @@ class Api
      */
     public static function globalMetrics(): GlobalMetrics
     {
-        return self::$globalMetrics ?: new GlobalMetrics(self::$apiKey);
+        self::$globalMetrics = self::$globalMetrics ?: new GlobalMetrics(self::$apiKey);
+        return self::$globalMetrics;
     }
 }
