@@ -2,7 +2,6 @@
   "name": "coinmarketcap-php",
   "version": "1.0.0",
   "description": "A PHP wrapper for [CoinMarketCap Professional API](https://pro.coinmarketcap.com/api/v1)",
-  "main": "index.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
