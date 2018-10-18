@@ -18,11 +18,9 @@ composer require vittominacori/coinmarketcap-php
 $cmc = new CoinMarketCap\Api('yourApiClient');
 ```
 
-## Call APIs
+## Call Cryptocurrency APIs
 
-### Cryptocurrency
-
-#### map
+### map
 
 Returns a paginated list of all cryptocurrencies by CoinMarketCap ID. We recommend using this convenience endpoint to lookup and utilize our unique cryptocurrency id across all endpoints as typical identifiers like ticker symbols can match multiple cryptocurrencies and change over time. As a convenience you may pass a comma-separated list of cryptocurrency symbols as symbol to filter this list to only those you require.
 
@@ -77,7 +75,7 @@ $response = $cmc->cryptocurrency()->map(['limit' => 3]);
 }
 ```
 
-#### info
+### info
 
 Returns all static metadata for one or more cryptocurrencies including name, symbol, logo, and its various registered URLs.
 
@@ -143,7 +141,7 @@ $response = $cmc->cryptocurrency()->info(['id' => 1]);
 }
 ```
 
-#### listings/latest
+### listings/latest
 
 Get a paginated list of all cryptocurrencies with latest market data. You can configure this call to sort by market cap or another market ranking field. Use the "convert" option to return market values in multiple fiat and cryptocurrency conversions in the same call.
 
@@ -245,7 +243,7 @@ $response = $cmc->cryptocurrency()->listingsLatest(['limit' => 3, 'convert' => '
 }
 ```
 
-#### quotes/latest
+### quotes/latest
 
 Get the latest market quote for 1 or more cryptocurrencies. Use the "convert" option to return market values in multiple fiat and cryptocurrency conversions in the same call.
 
@@ -296,9 +294,9 @@ $response = $cmc->cryptocurrency()->quotesLatest(['id' => 1, 'convert' => 'EUR']
 }
 ```
 
-### GlobalMetrics
+## Call GlobalMetrics APIs
 
-#### quotes/latest
+### quotes/latest
 
 Get the latest quote of aggregate market metrics. Use the "convert" option to return market values in multiple fiat and cryptocurrency conversions in the same call.
 
@@ -335,3 +333,7 @@ $response = $cmc->globalMetrics()->quotesLatest(['convert' => 'EUR']);
   }
 }
 ```
+
+## License
+
+Code released under the [MIT License](https://github.com/vittominacori/coinmarketcap-php/blob/master/LICENSE).

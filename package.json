@@ -1,0 +1,31 @@
+{
+  "name": "coinmarketcap-php",
+  "version": "1.0.0",
+  "description": "A PHP wrapper for [CoinMarketCap Professional API](https://pro.coinmarketcap.com/api/v1)",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "docs:deploy": "vuepress build docs && sh docs/deploy/deploy.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "coinmarketcap",
+    "exchange",
+    "crypto",
+    "client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vittominacori/coinmarketcap-php.git"
+  },
+  "author": "Vittorio Minacori (https://github.com/vittominacori)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vittominacori/coinmarketcap-php/issues"
+  },
+  "homepage": "https://github.com/vittominacori/coinmarketcap-php#readme",
+  "devDependencies": {
+    "vuepress": "^0.14.4"
+  }
+}
