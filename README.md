@@ -2,7 +2,7 @@
 
 A PHP wrapper for [CoinMarketCap Professional API](https://pro.coinmarketcap.com/api/v1)
 
-NOTES: only FREE apis. Check features list [here](https://pro.coinmarketcap.com/features).
+NOTES: only FREE APIs. Check features list [here](https://pro.coinmarketcap.com/features).
 
 ## Install
 
