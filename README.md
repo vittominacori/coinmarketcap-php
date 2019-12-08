@@ -334,6 +334,50 @@ $response = $cmc->globalMetrics()->quotesLatest(['convert' => 'EUR']);
 }
 ```
 
+
+## Call Tools APIs
+
+### price-conversion
+
+Convert an amount of one cryptocurrency or fiat currency into one or more different currencies utilizing the latest market rate for each currency. You may optionally pass a historical timestamp as time to convert values based on historical rates (as your API plan supports).
+
+Params:
++ (number) `amount` - An amount of currency to convert.
++ (string) `id` - The CoinMarketCap currency ID of the base cryptocurrency or fiat to convert from.
++ (string) `symbol` - Alternatively the currency symbol of the base cryptocurrency or fiat to convert from.
++ (string) `time` - Optional timestamp (Unix or ISO 8601) to reference historical pricing during conversion. If not passed, the current time will be used. If passed, we'll reference the closest historic values available for this conversion.
++ (string) `convert` - Pass up to 120 comma-separated fiat or cryptocurrency symbols to convert the source amount to.
+
+```php
+$response = $cmc->tools()->priceConversion(['amount' => 1, 'symbol' => 'BTC']);
+```
+
+```json
+{
+  "status": {
+    "timestamp": "2019-12-08T15:41:33.518Z",
+    "error_code": 0,
+    "error_message": null,
+    "elapsed": 8,
+    "credit_count": 1,
+    "notice": null
+  },
+  "data": {
+    "id": 1,
+    "symbol": "BTC",
+    "name": "Bitcoin",
+    "amount": 1,
+    "last_updated": "2019-12-08T15:40:32.000Z",
+    "quote": {
+      "USD": {
+        "price": 7616.58696412,
+        "last_updated": "2019-12-08T15:40:32.000Z"
+      }
+    }
+  }
+}
+```
+
 ## License
 
 Code released under the [MIT License](https://github.com/vittominacori/coinmarketcap-php/blob/master/LICENSE).
