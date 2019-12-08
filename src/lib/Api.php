@@ -4,6 +4,7 @@ namespace CoinMarketCap;
 
 use CoinMarketCap\Features\Cryptocurrency;
 use CoinMarketCap\Features\GlobalMetrics;
+use CoinMarketCap\Features\Partners;
 use CoinMarketCap\Features\Tools;
 
 /**
@@ -19,6 +20,7 @@ class Api
     private static $cryptocurrency = null;
     private static $globalMetrics = null;
     private static $tools = null;
+    private static $partners = null;
 
     /**
      * Api constructor.
@@ -54,5 +56,14 @@ class Api
     {
         self::$tools = self::$tools ?: new Tools(self::$apiKey);
         return self::$tools;
+    }
+
+    /**
+     * @return Partners
+     */
+    public static function partners(): Partners
+    {
+        self::$partners = self::$partners ?: new Partners(self::$apiKey);
+        return self::$partners;
     }
 }

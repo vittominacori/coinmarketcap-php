@@ -5,7 +5,7 @@ namespace CoinMarketCap\Features;
 use CoinMarketCap\Utils\ApiRequest;
 
 /**
- * GlobalMetrics
+ * Tools
  *
  * @link    https://github.com/vittominacori/coinmarketcap-php
  * @author  Vittorio Minacori (https://github.com/vittominacori)
@@ -14,7 +14,7 @@ use CoinMarketCap\Utils\ApiRequest;
 class Tools extends ApiRequest
 {
     /**
-     * GlobalMetrics constructor.
+     * Tools constructor.
      * @param string $apiKey
      */
     public function __construct($apiKey)

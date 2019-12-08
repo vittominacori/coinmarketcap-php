@@ -334,7 +334,6 @@ $response = $cmc->globalMetrics()->quotesLatest(['convert' => 'EUR']);
 }
 ```
 
-
 ## Call Tools APIs
 
 ### price-conversion
@@ -373,6 +372,103 @@ $response = $cmc->tools()->priceConversion(['amount' => 1, 'symbol' => 'BTC']);
         "price": 7616.58696412,
         "last_updated": "2019-12-08T15:40:32.000Z"
       }
+    }
+  }
+}
+```
+
+## Call Partners APIs
+
+### flipside-crypto/fcas/listings/latest
+
+Returns a paginated list of FCAS scores for all cryptocurrencies currently supported by FCAS. FCAS ratings are on a 0-1000 point scale with a corresponding letter grade and is updated once a day at UTC midnight.
+
+Params:
++ (integer >= 1) `start` - Default 1 - Optionally offset the start (1-based index) of the paginated list of items to return.
++ (integer [ 1 .. 5000 ]) `limit` - Default 100 - Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
++ (string) `aux` - Default "point_change_24h,percent_change_24h" - Optionally specify a comma-separated list of supplemental data fields to return. Pass 'point_change_24h,percent_change_24h' to include all auxiliary fields.
+
+```php
+$response = $cmc->partners()->flipsideFCASListingLatest(['limit' => 3]);
+```
+
+```json
+{
+  "status": {
+    "timestamp": "2019-12-08T16:04:04.084Z",
+    "error_code": 0,
+    "error_message": null,
+    "elapsed": 5,
+    "credit_count": 1,
+    "notice": null
+  },
+  "data": [
+    {
+      "id": 1027,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "score": 936,
+      "grade": "S",
+      "last_updated": "2019-12-08T00:00:00Z"
+    },
+    {
+      "id": 1765,
+      "name": "EOS",
+      "symbol": "EOS",
+      "slug": "eos",
+      "score": 929,
+      "grade": "S",
+      "last_updated": "2019-12-08T00:00:00Z"
+    },
+    {
+      "id": 1,
+      "name": "Bitcoin",
+      "symbol": "BTC",
+      "slug": "bitcoin",
+      "score": 907,
+      "grade": "S",
+      "last_updated": "2019-12-08T00:00:00Z"
+    }
+  ]
+}
+```
+
+### flipside-crypto/fcas/quotes/latest
+
+Returns the latest FCAS score for 1 or more cryptocurrencies. FCAS ratings are on a 0-1000 point scale with a corresponding letter grade and is updated once a day at UTC midnight.
+
+Params:
++ (string) `id` - One or more comma-separated cryptocurrency CoinMarketCap IDs.
++ (string) `slug` - Alternatively pass a comma-separated list of cryptocurrency slugs.
++ (string) `symbol` - Alternatively pass one or more comma-separated cryptocurrency symbols. Example: "BTC,ETH". At least one "id" or "slug" or "symbol" is required for this request.
++ (string) `aux` - Default "point_change_24h,percent_change_24h" - Optionally specify a comma-separated list of supplemental data fields to return. Pass 'point_change_24h,percent_change_24h' to include all auxiliary fields.
+
+```php
+$response = $cmc->partners()->flipsideFCASQuotesLatest(['symbol' => 'BTC']);
+```
+
+```json
+{
+  "status": {
+    "timestamp": "2019-12-08T16:16:15.082Z",
+    "error_code": 0,
+    "error_message": null,
+    "elapsed": 6,
+    "credit_count": 1,
+    "notice": null
+  },
+  "data": {
+    "BTC": {
+      "id": 1,
+      "name": "Bitcoin",
+      "symbol": "BTC",
+      "slug": "bitcoin",
+      "score": 907,
+      "grade": "S",
+      "last_updated": "2019-12-08T00:00:00Z",
+      "percent_change_24h": 0.11,
+      "point_change_24h": 1
     }
   }
 }
