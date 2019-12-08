@@ -24,7 +24,7 @@ class Cryptocurrency extends ApiRequest
     }
 
     /**
-     * @param array $params ["listing_status", "limit", "start", "symbol"]
+     * @param array $params ["listing_status", "start", "limit", "sort", "symbol", "aux"]
      * @return mixed
      * @throws \Exception
      */
@@ -34,7 +34,7 @@ class Cryptocurrency extends ApiRequest
     }
 
     /**
-     * @param array $params ["id", "symbol"]
+     * @param array $params ["id", "slug", "symbol", "aux"]
      * @return mixed
      * @throws \Exception
      */
@@ -44,7 +44,7 @@ class Cryptocurrency extends ApiRequest
     }
 
     /**
-     * @param array $params ["limit", "start", "convert", "sort", "sort_dir", "cryptocurrency_type"]
+     * @param array $params ["start", "limit", "volume_24h_min", "convert", "convert_id", "sort", "sort_dir", "cryptocurrency_type", "aux"]
      * @return mixed
      * @throws \Exception
      */
@@ -54,7 +54,7 @@ class Cryptocurrency extends ApiRequest
     }
 
     /**
-     * @param array $params ["id", "symbol", "convert"]
+     * @param array $params ["id", "slug", "symbol", "convert", "convert_id", "aux", "skip_invalid"]
      * @return mixed
      * @throws \Exception
      */

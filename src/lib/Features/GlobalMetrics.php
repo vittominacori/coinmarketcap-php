@@ -24,7 +24,7 @@ class GlobalMetrics extends ApiRequest
     }
 
     /**
-     * @param array $params ["convert"]
+     * @param array $params ["convert", "convert_id"]
      * @return mixed
      * @throws \Exception
      */
